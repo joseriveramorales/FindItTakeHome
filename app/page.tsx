@@ -1,7 +1,6 @@
 import Navbar from "@/components/navbar";
 import Hero from "@/components/hero";
 import FeaturedProperty from "@/components/featured-property";
-import PropertyCards from "@/components/property-cards";
 import PropertyTypeSection from "@/components/property-type-section";
 import FeatureCards from "@/components/feature-cards";
 import AgentPromo from "@/components/agent-promo";
@@ -14,9 +13,17 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <Navbar />
       <main>
-        <Hero />
-        <FeaturedProperty />
-        <PropertyCards />
+        {/* Side-by-side layout: Hero/Search and Propiedad Destacada */}
+        <section className="w-full bg-white py-16">
+          <div className="mx-auto max-w-7xl px-8">
+            <div className="grid grid-cols-[1fr_400px] gap-12">
+              {/* Left: Hero/Search section */}
+              <Hero />
+              {/* Right: Propiedad destacada section */}
+              <FeaturedProperty />
+            </div>
+          </div>
+        </section>
         <PropertyTypeSection />
         <FeatureCards />
         <AgentPromo />

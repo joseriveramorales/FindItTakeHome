@@ -28,20 +28,9 @@ function formatSqft(sqft: number): string {
 
 export default function FeaturedProperty() {
   return (
-    <section className="w-full bg-white py-16">
-      <div className="mx-auto max-w-[1440px] px-8">
-        {/* Section Title */}
-        <div className="mb-8 text-center">
-          <h2 className="text-[32px] font-bold leading-tight" style={{ color: "var(--text-primary)" }}>
-            Propiedad Destacada
-          </h2>
-          <p className="mt-2 text-base" style={{ color: "var(--text-secondary)" }}>
-            La mejor oportunidad de esta semana
-          </p>
-        </div>
-
-        {/* Featured Property Card - Centered */}
-        <div className="mx-auto max-w-[1000px]">
+    <div>
+      {/* Featured Property Card - Centered */}
+      <div className="mx-auto">
           <Card
             className="group overflow-hidden border-[1px] p-0 shadow-md hover:shadow-xl"
             style={{
@@ -167,7 +156,6 @@ export default function FeaturedProperty() {
             </div>
           </Card>
         </div>
-      </div>
-    </section>
+    </div>
   );
 }

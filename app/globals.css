@@ -171,4 +171,9 @@
   body {
     @apply bg-background text-foreground;
   }
+  /* Active tab styling for shadcn Tabs */
+  [data-state="active"] {
+    color: var(--primary) !important;
+    border-color: var(--primary) !important;
+  }
 }
