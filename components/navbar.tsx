@@ -11,23 +11,31 @@ import {
   DropdownMenuSeparator,
   DropdownMenuLabel,
 } from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { ChevronDown, Menu } from "lucide-react";
 
 /**
  * Navbar component for the FindIT homepage
  *
  * Features:
- * - Fixed to top with 96px height
+ * - Responsive design: desktop nav (≥1200px), mobile sidebar (<1200px)
  * - Three sections: logo, navigation links, and action buttons
  * - Uses FindIT brand colors (#2A7DE6) for hover states
  * - Includes "Propiedades" dropdown menu with hover trigger
  * - Language switcher (ES/EN)
- * - Desktop-only design
+ * - Mobile sidebar with menu items
  * - Smooth animations on dropdown open/close
  */
 export default function Navbar() {
   const [propiedadesOpen, setPropiedadesOpen] = useState(false);
   const [profesionalesOpen, setProfesionalesOpen] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   let propiedadesTimeout: NodeJS.Timeout;
   let profesionalesTimeout: NodeJS.Timeout;
@@ -49,9 +57,120 @@ export default function Navbar() {
   };
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-white" style={{ borderColor: "var(--border-primary)" }}>
-      <div className="mx-auto flex h-24 max-w-[1440px] items-center px-4">
-        {/* Logo Section - Fixed width for alignment */}
-        <div className="flex w-64 flex-shrink-0">
+      <div className="mx-auto flex h-24 max-w-7xl items-center px-4">
+        {/* Mobile Hamburger Menu - Visible on screens <1280px */}
+        <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
+          <SheetTrigger asChild>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="xl:hidden mr-4"
+              aria-label="Abrir menú"
+            >
+              <Menu className="h-6 w-6" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="left" className="w-80">
+            <SheetHeader>
+              <SheetTitle>
+                <Link href="/" onClick={() => setSidebarOpen(false)}>
+                  <span className="text-2xl font-bold">
+                    Find<span style={{ color: "var(--findit-blue)" }}>IT</span>
+                  </span>
+                </Link>
+              </SheetTitle>
+            </SheetHeader>
+            <div className="mt-8 flex flex-col gap-4">
+              {/* Inicio */}
+              <Link
+                href="/"
+                className="text-base font-medium py-2 px-3 hover:bg-accent rounded-md transition-colors"
+                onClick={() => setSidebarOpen(false)}
+              >
+                Inicio
+              </Link>
+
+              {/* Propiedades */}
+              <div>
+                <div className="text-base font-medium py-2 px-3">
+                  Propiedades
+                </div>
+                <div className="ml-4 mt-2 flex flex-col gap-2">
+                  <Link
+                    href="#"
+                    className="text-sm py-2 px-3 hover:bg-accent rounded-md transition-colors"
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    Buscar en venta
+                  </Link>
+                  <Link
+                    href="#"
+                    className="text-sm py-2 px-3 hover:bg-accent rounded-md transition-colors"
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    Buscar en alquiler
+                  </Link>
+                  <Link
+                    href="#"
+                    className="text-sm py-2 px-3 hover:bg-accent rounded-md transition-colors"
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    Mis propiedades
+                  </Link>
+                </div>
+              </div>
+
+              {/* Profesionales de bienes raíces */}
+              <div>
+                <div className="text-base font-medium py-2 px-3">
+                  Profesionales de bienes raíces
+                </div>
+                <div className="ml-4 mt-2 flex flex-col gap-2">
+                  <Link
+                    href="#"
+                    className="text-sm py-2 px-3 hover:bg-accent rounded-md transition-colors"
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    Agentes de bienes raíces
+                  </Link>
+                  <Link
+                    href="#"
+                    className="text-sm py-2 px-3 hover:bg-accent rounded-md transition-colors"
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    Financiamiento hipotecario
+                  </Link>
+                  <Link
+                    href="#"
+                    className="text-sm py-2 px-3 hover:bg-accent rounded-md transition-colors"
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    Tasadores
+                  </Link>
+                  <Link
+                    href="#"
+                    className="text-sm py-2 px-3 hover:bg-accent rounded-md transition-colors"
+                    onClick={() => setSidebarOpen(false)}
+                  >
+                    Abogados
+                  </Link>
+                </div>
+              </div>
+
+              {/* Sobre FindIT */}
+              <Link
+                href="#"
+                className="text-base font-medium py-2 px-3 hover:bg-accent rounded-md transition-colors"
+                onClick={() => setSidebarOpen(false)}
+              >
+                Sobre FindIT
+              </Link>
+            </div>
+          </SheetContent>
+        </Sheet>
+
+        {/* Logo Section */}
+        <div className="flex flex-shrink-0">
           <Link
             href="/"
             className="text-2xl font-bold"
@@ -64,8 +183,8 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Center Navigation Links - Flex grow to center */}
-        <div className="flex flex-1 items-center justify-center gap-8">
+        {/* Center Navigation Links - Hidden on mobile, visible on desktop (≥1280px) */}
+        <div className="hidden xl:flex flex-1 items-center justify-center gap-8">
           <Link
             href="/"
             className="text-base font-medium"
@@ -224,8 +343,8 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Right Side Actions - Fixed width matching logo section for balance */}
-        <div className="flex w-64 items-center justify-end gap-4">
+        {/* Right Side Actions - Hidden on mobile, visible on desktop (≥1280px) */}
+        <div className="hidden xl:flex items-center justify-end gap-4 ml-auto">
           {/* Language Switcher */}
           <div
             className="flex items-center gap-1 border px-3 py-2"
