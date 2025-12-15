@@ -39,26 +39,6 @@ export default function FeaturedProperty() {
                   sizes="(max-width: 1280px) 100vw, 1280px"
                 />
               </div>
-              {/* Property Type Badge - Positioned on the image */}
-              <div
-                className="absolute left-6 top-6 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm"
-                style={{
-                  borderRadius: "var(--radius-button)",
-                  backgroundColor: "rgba(42, 125, 230, 0.9)",
-                }}
-              >
-                {featuredProperty.propertyType}
-              </div>
-              {/* Featured Badge */}
-              <div
-                className="absolute right-6 top-6 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm"
-                style={{
-                  borderRadius: "var(--radius-button)",
-                  backgroundColor: "rgba(250, 173, 20, 0.95)",
-                }}
-              >
-                Destacada
-              </div>
             </div>
 
             {/* Property Content Section */}
