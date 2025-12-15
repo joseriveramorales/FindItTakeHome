@@ -4,6 +4,7 @@ import FeaturedProperty from "@/components/featured-property";
 import PropertyTypeSection from "@/components/property-type-section";
 import FeatureCards from "@/components/feature-cards";
 import AgentPromo from "@/components/agent-promo";
+import MediaMentions from "@/components/media-mentions";
 import BlogSection from "@/components/blog-section";
 import PueblosSection from "@/components/pueblos-section";
 import Footer from "@/components/footer";
@@ -25,8 +26,13 @@ export default function Home() {
           </div>
         </section>
         <PropertyTypeSection />
+
         <FeatureCards />
         <AgentPromo />
+
+        {/* Media Mentions Section */}
+        <MediaMentions />
+
         <BlogSection />
         <PueblosSection />
       </main>

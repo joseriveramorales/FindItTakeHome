@@ -6,8 +6,8 @@ export default function FeatureCards() {
   const features = [
     {
       icon: Search,
-      iconColor: "text-blue-500",
-      iconBg: "bg-blue-500/10",
+      iconColor: "#2A7DE6",
+      iconBg: "rgba(42, 125, 230, 0.1)",
       title: "Busca propiedades",
       description:
         "Utiliza el mapa y filtros para encontrar tu propiedad ideal rápido.",
@@ -15,16 +15,16 @@ export default function FeatureCards() {
     },
     {
       icon: Heart,
-      iconColor: "text-green-500",
-      iconBg: "bg-green-500/10",
+      iconColor: "#52C41A",
+      iconBg: "rgba(82, 196, 26, 0.1)",
       title: "Guarda tus búsquedas",
       description: "Te notificamos de nuevos listados al instante.",
       buttonText: "Guardar búsquedas",
     },
     {
       icon: Users,
-      iconColor: "text-purple-500",
-      iconBg: "bg-purple-500/10",
+      iconColor: "#9254DE",
+      iconBg: "rgba(146, 84, 222, 0.1)",
       title: "Consigue servicios",
       description:
         "Encuentra los servicios que necesitas para comprar tu propiedad.",
@@ -57,9 +57,10 @@ export default function FeatureCards() {
                   className="flex items-start gap-6 border-0 bg-white p-6 shadow-sm transition-all duration-200 hover:shadow-md"
                 >
                   <div
-                    className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl ${feature.iconBg}`}
+                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"
+                    style={{ backgroundColor: feature.iconBg }}
                   >
-                    <Icon className={`h-7 w-7 ${feature.iconColor}`} />
+                    <Icon className="h-7 w-7" style={{ color: feature.iconColor }} />
                   </div>
                   <div className="flex flex-1 flex-col">
                     <h3 className="mb-2 text-xl font-semibold text-text-primary">

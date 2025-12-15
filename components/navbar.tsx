@@ -187,10 +187,16 @@ export default function Navbar() {
         <div className="hidden xl:flex flex-1 items-center justify-center gap-8">
           <Link
             href="/"
-            className="text-base font-medium"
+            className="text-base font-medium hover:text-findit-blue"
             style={{
               color: "var(--text-primary)",
               transition: "all 200ms",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "var(--findit-blue)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "var(--text-primary)";
             }}
           >
             Inicio
@@ -333,10 +339,16 @@ export default function Navbar() {
           </DropdownMenu>
           <Link
             href="/publicar"
-            className="text-base font-medium"
+            className="text-base font-medium hover:text-findit-blue"
             style={{
               color: "var(--text-primary)",
               transition: "all 200ms",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.color = "var(--findit-blue)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.color = "var(--text-primary)";
             }}
           >
             Publicar

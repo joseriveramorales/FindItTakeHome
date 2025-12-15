@@ -1,6 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Bed, Bath, Maximize2, MapPin } from "lucide-react";
+import Image from "next/image";
 
 // Hardcoded featured property data
 const featuredProperty = {
@@ -12,8 +13,7 @@ const featuredProperty = {
   sqft: 2200,
   propertyType: "Casa",
   description: "Hermosa propiedad con vistas espectaculares y acabados de lujo.",
-  // Using a distinctive gradient for the featured property
-  imageGradient: "from-teal-400 via-teal-500 to-blue-500",
+  imageUrl: "https://images.finditpr.com/assets/1st-reduced.jpeg",
 };
 
 // Format price to currency string
@@ -46,11 +46,20 @@ export default function FeaturedProperty() {
             */}
             <div className="relative h-[380px] w-full overflow-hidden">
               <div
-                className={`h-full w-full bg-gradient-to-br ${featuredProperty.imageGradient}`}
+                className="relative h-full w-full"
                 style={{
                   borderRadius: "250px 250px var(--radius-card) var(--radius-card)",
+                  overflow: "hidden",
                 }}
-              />
+              >
+                <Image
+                  src={featuredProperty.imageUrl}
+                  alt={featuredProperty.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1280px) 100vw, 1280px"
+                />
+              </div>
               {/* Property Type Badge - Positioned on the image */}
               <div
                 className="absolute left-6 top-6 px-4 py-2 text-sm font-semibold text-white backdrop-blur-sm"

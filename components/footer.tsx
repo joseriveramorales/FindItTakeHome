@@ -1,70 +1,141 @@
+"use client";
+
 import Link from "next/link";
-import { Facebook, Instagram, Twitter } from "lucide-react";
+import { Facebook, Instagram, Twitter, ChevronDown, ChevronUp } from "lucide-react";
+import { useState } from "react";
 
 /**
- * Footer component for the FindIT homepage
+ * Footer component matching finditpr.com exactly
  *
  * Structure:
- * - Company branding and description
- * - Navigation links (Contact, About, Terms, Privacy)
- * - Cities section with 5 major PR cities
- * - Social media links
+ * - 6-column layout: Bienes Raíces (expandable), Alquiler (expandable), Compañía, Explora, Bottom Section
+ * - All 78 PR municipalities with "Ver más" expand functionality
+ * - Social media icons
  * - Copyright and licensing information
- *
- * Design:
- * - Light gray background (#F5F5F5) matching finditpr.com
- * - Consistent brand colors for links and hover states
- * - Desktop-only layout (no mobile responsive design)
  */
 export default function Footer() {
-  const cities = [
-    { name: "San Juan", href: "/bienes-raices/san-juan" },
-    { name: "Bayamón", href: "/bienes-raices/bayamon" },
-    { name: "Carolina", href: "/bienes-raices/carolina" },
-    { name: "Ponce", href: "/bienes-raices/ponce" },
-    { name: "Caguas", href: "/bienes-raices/caguas" },
+  const [showAllBienesRaices, setShowAllBienesRaices] = useState(false);
+  const [showAllAlquiler, setShowAllAlquiler] = useState(false);
+
+  // All 78 municipalities in alphabetical order
+  const municipalities = [
+    "Adjuntas", "Aguada", "Aguadilla", "Aibonito", "Añasco", "Arecibo", "Arroyo",
+    "Barceloneta", "Barranquitas", "Bayamón", "Cabo Rojo", "Caguas", "Camuy",
+    "Canóvanas", "Carolina", "Cataño", "Cayey", "Ceiba", "Ciales", "Cidra",
+    "Coamo", "Comerío", "Corozal", "Culebra", "Dorado", "Fajardo", "Florida",
+    "Guánica", "Guayama", "Guayanilla", "Guaynabo", "Gurabo", "Hatillo",
+    "Hormigueros", "Humacao", "Isabela", "Jayuya", "Juana Díaz", "Juncos",
+    "Lajas", "Lares", "Las Marías", "Las Piedras", "Loíza", "Luquillo",
+    "Manatí", "Maricao", "Maunabo", "Mayagüez", "Moca", "Morovis", "Naguabo",
+    "Naranjito", "Orocovis", "Patillas", "Peñuelas", "Ponce", "Quebradillas",
+    "Rincón", "Río Grande", "Sabana Grande", "Salinas", "San Germán", "San Juan",
+    "San Lorenzo", "San Sebastián", "Santa Isabel", "Toa Alta", "Toa Baja",
+    "Trujillo Alto", "Utuado", "Vega Alta", "Vega Baja", "Vieques", "Villalba",
+    "Yabucoa", "Yauco"
   ];
+
+  const displayedBienesRaices = showAllBienesRaices ? municipalities : municipalities.slice(0, 10);
+  const displayedAlquiler = showAllAlquiler ? municipalities : municipalities.slice(0, 10);
 
   const companyLinks = [
     { name: "Contáctanos", href: "/contacto" },
-    { name: "Acerca de Nosotros", href: "/acerca" },
     { name: "Términos de Uso", href: "/terminos" },
     { name: "Política de Privacidad", href: "/privacidad" },
     { name: "Mapa del Sitio", href: "/mapa" },
   ];
 
+  const exploreLinks = [
+    { name: "Findit Blog", href: "/blog" },
+    { name: "Acerca de Nosotros", href: "/acerca" },
+  ];
+
   return (
     <footer className="w-full" style={{ backgroundColor: "var(--bg-section)" }}>
-      <div className="mx-auto max-w-[1440px] px-8 py-20">
-        {/* Top Section: Branding and Links */}
-        <div className="grid grid-cols-3 gap-16 mb-12">
-          {/* Brand Section */}
-          <div className="space-y-4">
-            <h3 className="text-2xl font-bold" style={{ color: "var(--text-primary)" }}>
-              Find<span style={{ color: "var(--findit-blue)" }}>IT</span>
-            </h3>
-            <p className="text-sm leading-relaxed" style={{ color: "var(--text-secondary)" }}>
-              Tu portal de bienes raíces en Puerto Rico. Encuentra la propiedad
-              perfecta para ti con las mejores herramientas de búsqueda y
-              profesionales inmobiliarios certificados.
-            </p>
-          </div>
-
-          {/* Company Links */}
+      <div className="mx-auto max-w-[1440px] px-8 py-16">
+        {/* Main Grid: 4 columns for main sections */}
+        <div className="grid grid-cols-4 gap-12 mb-12">
+          {/* Column 1: Bienes Raíces */}
           <div className="space-y-4">
             <h4 className="text-base font-semibold" style={{ color: "var(--text-primary)" }}>
-              Empresa
+              Bienes Raíces
+            </h4>
+            <ul className="space-y-2">
+              {displayedBienesRaices.map((municipality) => (
+                <li key={municipality}>
+                  <Link
+                    href={`/${municipality.toLowerCase().replace(/ /g, "-")}/venta`}
+                    className="text-sm hover:underline"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
+                    {municipality} Bienes Raíces
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={() => setShowAllBienesRaices(!showAllBienesRaices)}
+              className="flex items-center gap-1 text-sm font-medium hover:underline"
+              style={{ color: "var(--findit-blue)" }}
+            >
+              {showAllBienesRaices ? (
+                <>
+                  Ver menos <ChevronUp className="h-4 w-4" />
+                </>
+              ) : (
+                <>
+                  Ver más <ChevronDown className="h-4 w-4" />
+                </>
+              )}
+            </button>
+          </div>
+
+          {/* Column 2: Alquiler */}
+          <div className="space-y-4">
+            <h4 className="text-base font-semibold" style={{ color: "var(--text-primary)" }}>
+              Alquiler
+            </h4>
+            <ul className="space-y-2">
+              {displayedAlquiler.map((municipality) => (
+                <li key={municipality}>
+                  <Link
+                    href={`/${municipality.toLowerCase().replace(/ /g, "-")}/apartamentos-en-alquiler`}
+                    className="text-sm hover:underline"
+                    style={{ color: "var(--text-secondary)" }}
+                  >
+                    Apartamentos en alquiler en {municipality}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <button
+              onClick={() => setShowAllAlquiler(!showAllAlquiler)}
+              className="flex items-center gap-1 text-sm font-medium hover:underline"
+              style={{ color: "var(--findit-blue)" }}
+            >
+              {showAllAlquiler ? (
+                <>
+                  Ver menos <ChevronUp className="h-4 w-4" />
+                </>
+              ) : (
+                <>
+                  Ver más <ChevronDown className="h-4 w-4" />
+                </>
+              )}
+            </button>
+          </div>
+
+          {/* Column 3: Compañía */}
+          <div className="space-y-4">
+            <h4 className="text-base font-semibold" style={{ color: "var(--text-primary)" }}>
+              Compañía
             </h4>
             <ul className="space-y-2">
               {companyLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm"
-                    style={{
-                      color: "var(--text-secondary)",
-                      transition: "all 200ms",
-                    }}
+                    className="text-sm hover:underline"
+                    style={{ color: "var(--text-secondary)" }}
                   >
                     {link.name}
                   </Link>
@@ -73,23 +144,20 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Cities Section */}
+          {/* Column 4: Explora */}
           <div className="space-y-4">
             <h4 className="text-base font-semibold" style={{ color: "var(--text-primary)" }}>
-              Bienes Raíces por Ciudad
+              Explora
             </h4>
             <ul className="space-y-2">
-              {cities.map((city) => (
-                <li key={city.name}>
+              {exploreLinks.map((link) => (
+                <li key={link.name}>
                   <Link
-                    href={city.href}
-                    className="text-sm"
-                    style={{
-                      color: "var(--text-secondary)",
-                      transition: "all 200ms",
-                    }}
+                    href={link.href}
+                    className="text-sm hover:underline"
+                    style={{ color: "var(--text-secondary)" }}
                   >
-                    {city.name}
+                    {link.name}
                   </Link>
                 </li>
               ))}
@@ -100,17 +168,27 @@ export default function Footer() {
         {/* Divider */}
         <div className="border-t mb-8" style={{ borderColor: "var(--border-light)" }}></div>
 
-        {/* Bottom Section: Social Media and Copyright */}
-        <div className="flex items-center justify-between">
-          {/* Copyright and Legal */}
-          <div className="space-y-1">
-            <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
-              © 2024 Bluepath Group LLC. Equal Housing Opportunity
-            </p>
-            <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
-              Bluepath Group LLC posee una licencia de bienes raíces en Puerto
-              Rico número E-401
-            </p>
+        {/* Bottom Section: Copyright, Legal, and Social Media */}
+        <div className="flex items-start justify-between">
+          {/* Left: Copyright and Legal */}
+          <div className="space-y-2">
+            <div className="flex items-center gap-2">
+              <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
+                © 2025 Bluepath Group LLC
+              </p>
+              <span style={{ color: "var(--text-secondary)" }}>•</span>
+              <Link
+                href="/equal-housing-opportunity"
+                className="text-sm hover:underline"
+                style={{ color: "var(--text-secondary)" }}
+              >
+                Equal Housing Opportunity
+              </Link>
+              <span style={{ color: "var(--text-secondary)" }}>•</span>
+              <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
+                Licencia E-401
+              </p>
+            </div>
             <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
               Hecho con{" "}
               <span style={{ color: "var(--findit-blue)" }} aria-label="love">
@@ -120,13 +198,13 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Social Media Links */}
+          {/* Right: Social Media Links */}
           <div className="flex items-center gap-4">
             <Link
-              href="https://facebook.com"
+              href="https://facebook.com/finditpr"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-full border bg-white"
+              className="flex h-10 w-10 items-center justify-center rounded-full border bg-white hover:bg-gray-50"
               style={{
                 borderColor: "var(--border-primary)",
                 color: "var(--text-secondary)",
@@ -137,10 +215,10 @@ export default function Footer() {
               <Facebook className="h-5 w-5" />
             </Link>
             <Link
-              href="https://instagram.com"
+              href="https://instagram.com/finditpr"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-full border bg-white"
+              className="flex h-10 w-10 items-center justify-center rounded-full border bg-white hover:bg-gray-50"
               style={{
                 borderColor: "var(--border-primary)",
                 color: "var(--text-secondary)",
@@ -151,10 +229,10 @@ export default function Footer() {
               <Instagram className="h-5 w-5" />
             </Link>
             <Link
-              href="https://twitter.com"
+              href="https://twitter.com/finditpr"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-full border bg-white"
+              className="flex h-10 w-10 items-center justify-center rounded-full border bg-white hover:bg-gray-50"
               style={{
                 borderColor: "var(--border-primary)",
                 color: "var(--text-secondary)",

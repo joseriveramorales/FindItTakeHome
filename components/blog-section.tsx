@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function BlogSection() {
   const blogPosts = [
@@ -9,6 +10,7 @@ export default function BlogSection() {
         "Descubre los pasos esenciales que debes seguir para hacer una compra inteligente y segura de tu primera propiedad.",
       date: "15 de diciembre, 2024",
       category: "Guías",
+      imageUrl: "https://images.finditpr.com/blog-images/posts/e1c21ccb-33b2-4cd5-aa2c-48f22c186b40.jpg",
     },
     {
       title: "Tendencias del mercado inmobiliario en San Juan",
@@ -16,6 +18,7 @@ export default function BlogSection() {
         "Análisis detallado de cómo ha evolucionado el mercado en la zona metro y qué esperar para el próximo año.",
       date: "12 de diciembre, 2024",
       category: "Análisis",
+      imageUrl: "https://images.finditpr.com/blog-images/posts/f2f8c09e-0f43-4c9d-b6e0-0c1871bee20b.jpg",
     },
     {
       title: "Cómo preparar tu propiedad para vender más rápido",
@@ -23,6 +26,7 @@ export default function BlogSection() {
         "Tips profesionales para aumentar el valor de tu propiedad y atraer más compradores potenciales.",
       date: "8 de diciembre, 2024",
       category: "Consejos",
+      imageUrl: "https://images.finditpr.com/blog-images/posts/44380ff7-2afc-497f-ad1b-bab6e4870865.jpg",
     },
   ];
 
@@ -31,7 +35,7 @@ export default function BlogSection() {
       <div className="mx-auto max-w-7xl px-4">
         <div className="mb-12 flex items-center justify-between">
           <h2 className="text-3xl font-bold text-text-primary">
-            Noticias y artículos
+            Recursos y noticias relevantes
           </h2>
           <Button
             variant="outline"
@@ -46,7 +50,15 @@ export default function BlogSection() {
               key={index}
               className="flex flex-col overflow-hidden border-0 bg-white shadow-sm transition-all duration-200 hover:shadow-md"
             >
-              <div className="h-48 bg-gradient-to-br from-findit-blue/20 to-purple/20"></div>
+              <div className="relative h-48">
+                <Image
+                  src={post.imageUrl}
+                  alt={post.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
+              </div>
               <div className="flex flex-col p-6">
                 <div className="mb-2 flex items-center gap-2">
                   <span className="rounded-full bg-findit-blue/10 px-3 py-1 text-xs font-medium text-findit-blue">
