@@ -472,9 +472,9 @@ export const propertiesForSale: Record<PropertyType, Property[]> = {
       location: "Utuado",
       propertyType: "Terrenos",
       imageUrls: [
-        "https://images.unsplash.com/photo-1440186347098-386cfda5f424?w=800&q=80",
         "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80",
         "https://images.unsplash.com/photo-1592595896551-12b371d546d5?w=800&q=80",
+        "https://images.unsplash.com/photo-1446329360270-35f63f4e6fc7?w=800&q=80",
       ],
     },
     {
@@ -817,7 +817,7 @@ export const municipalities: Municipality[] = [
     name: "Guaynabo",
     properties: "1,245",
     avgPrice: "$325,000",
-    imageUrl: "https://images.unsplash.com/photo-1642939487851-3fbe8fec4be4?w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&q=80",
   },
   {
     name: "Carolina",
@@ -841,7 +841,7 @@ export const municipalities: Municipality[] = [
     name: "San Juan",
     properties: "2,156",
     avgPrice: "$425,000",
-    imageUrl: "https://images.unsplash.com/photo-1580599991155-8fc4d36ffbb3?w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&q=80",
   },
   {
     name: "Bayamón",
@@ -865,7 +865,7 @@ export const municipalities: Municipality[] = [
     name: "Ponce",
     properties: "923",
     avgPrice: "$245,000",
-    imageUrl: "https://images.unsplash.com/photo-1580599991155-8fc4d36ffbb3?w=800&q=80",
+    imageUrl: "https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=800&q=80",
   },
 ];
 
@@ -916,15 +916,22 @@ export function getAllPropertiesForSale(): Property[] {
 }
 
 /**
- * Get a mixed selection of properties (one from each category)
+ * Shuffle array using Fisher-Yates algorithm
+ */
+function shuffleArray<T>(array: T[]): T[] {
+  const shuffled = [...array];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+/**
+ * Get all properties from all categories combined for "Todos" tab, in randomized order
  */
 export function getMixedProperties(): Property[] {
-  return [
-    propertiesForSale.Casa[0],
-    propertiesForSale.Apartamento[0],
-    propertiesForSale.Terrenos[0],
-    propertiesForSale.Comercial[0],
-  ];
+  return shuffleArray(getAllPropertiesForSale());
 }
 
 /**

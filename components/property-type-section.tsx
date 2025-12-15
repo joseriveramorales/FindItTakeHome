@@ -59,7 +59,11 @@ function PropertyCard({ property }: { property: Property }) {
           overflow: "hidden"
         }}
       >
-        <Carousel setApi={setApi} className="w-full h-full">
+        <Carousel
+          setApi={setApi}
+          className="w-full h-full"
+          opts={{ loop: true }}
+        >
           <CarouselContent>
             {images.map((imageUrl, index) => (
               <CarouselItem key={index}>

@@ -17,7 +17,7 @@ export default function PueblosSection() {
   return (
     <section className={`bg-white ${SECTION_PADDING.sm}`}>
       <div className={`mx-auto ${CONTAINER_WIDTH} px-6`}>
-        <h2 className="mb-6 text-3xl font-bold text-text-primary">
+        <h2 className="mb-12 text-5xl font-bold text-text-primary text-center">
           Pueblos más buscados
         </h2>
         <div className="flex gap-4">

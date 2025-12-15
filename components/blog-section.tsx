@@ -8,16 +8,10 @@ export default function BlogSection() {
   return (
     <section className="bg-background-section py-16">
       <div className="mx-auto max-w-7xl px-4">
-        <div className="mb-12 flex items-center justify-between">
-          <h2 className="text-3xl font-bold text-text-primary">
+        <div className="mb-12 text-center">
+          <h2 className="text-5xl font-bold text-text-primary mb-6">
             Recursos y noticias relevantes
           </h2>
-          <Button
-            variant="outline"
-            className="h-10 rounded-3xl border-2 border-findit-blue text-findit-blue transition-all duration-200 hover:bg-findit-blue/5"
-          >
-            Ver todos los artículos
-          </Button>
         </div>
         <div className="grid grid-cols-3 gap-8">
           {blogPosts.map((post, index) => (
