@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -17,11 +20,33 @@ import { ChevronDown } from "lucide-react";
  * - Fixed to top with 96px height
  * - Three sections: logo, navigation links, and action buttons
  * - Uses FindIT brand colors (#2A7DE6) for hover states
- * - Includes "Propiedades" dropdown menu
+ * - Includes "Propiedades" dropdown menu with hover trigger
  * - Language switcher (ES/EN)
  * - Desktop-only design
+ * - Smooth animations on dropdown open/close
  */
 export default function Navbar() {
+  const [propiedadesOpen, setPropiedadesOpen] = useState(false);
+  const [profesionalesOpen, setProfesionalesOpen] = useState(false);
+
+  let propiedadesTimeout: NodeJS.Timeout;
+  let profesionalesTimeout: NodeJS.Timeout;
+
+  const handlePropiedadesOpen = (isOpen: boolean) => {
+    if (isOpen) {
+      clearTimeout(profesionalesTimeout);
+      setProfesionalesOpen(false);
+    }
+    setPropiedadesOpen(isOpen);
+  };
+
+  const handleProfesionalesOpen = (isOpen: boolean) => {
+    if (isOpen) {
+      clearTimeout(propiedadesTimeout);
+      setPropiedadesOpen(false);
+    }
+    setProfesionalesOpen(isOpen);
+  };
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-white" style={{ borderColor: "var(--border-primary)" }}>
       <div className="mx-auto flex h-24 max-w-[1440px] items-center px-4">
@@ -53,20 +78,41 @@ export default function Navbar() {
           </Link>
 
           {/* Propiedades Dropdown */}
-          <DropdownMenu>
+          <DropdownMenu open={propiedadesOpen} onOpenChange={handlePropiedadesOpen}>
             <DropdownMenuTrigger asChild>
               <button
                 className="flex items-center gap-1 text-base font-medium"
                 style={{
-                  color: "var(--text-primary)",
+                  color: propiedadesOpen ? "var(--findit-blue)" : "var(--text-primary)",
                   transition: "all 200ms",
+                }}
+                onMouseEnter={() => {
+                  clearTimeout(propiedadesTimeout);
+                  handlePropiedadesOpen(true);
+                }}
+                onMouseLeave={() => {
+                  propiedadesTimeout = setTimeout(() => {
+                    handlePropiedadesOpen(false);
+                  }, 100);
                 }}
               >
                 Propiedades
                 <ChevronDown className="h-4 w-4" />
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-48">
+            <DropdownMenuContent
+              align="start"
+              className="w-48"
+              onMouseEnter={() => {
+                clearTimeout(propiedadesTimeout);
+                handlePropiedadesOpen(true);
+              }}
+              onMouseLeave={() => {
+                propiedadesTimeout = setTimeout(() => {
+                  handlePropiedadesOpen(false);
+                }, 100);
+              }}
+            >
               <DropdownMenuItem className="cursor-pointer text-base">
                 Buscar Propiedades
               </DropdownMenuItem>
@@ -80,54 +126,90 @@ export default function Navbar() {
           </DropdownMenu>
 
           {/* Profesionales inmobiliarios Dropdown */}
-          <DropdownMenu>
+          <DropdownMenu open={profesionalesOpen} onOpenChange={handleProfesionalesOpen}>
             <DropdownMenuTrigger asChild>
               <button
                 className="flex items-center gap-1 text-base font-medium"
                 style={{
-                  color: "var(--text-primary)",
+                  color: profesionalesOpen ? "var(--findit-blue)" : "var(--text-primary)",
                   transition: "all 200ms",
+                }}
+                onMouseEnter={() => {
+                  clearTimeout(profesionalesTimeout);
+                  handleProfesionalesOpen(true);
+                }}
+                onMouseLeave={() => {
+                  profesionalesTimeout = setTimeout(() => {
+                    handleProfesionalesOpen(false);
+                  }, 100);
                 }}
               >
                 Profesionales inmobiliarios
                 <ChevronDown className="h-4 w-4" />
               </button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="start" className="w-56">
-              <DropdownMenuLabel className="text-sm font-semibold">
-                Encuentra servicios:
-              </DropdownMenuLabel>
-              <DropdownMenuItem className="cursor-pointer text-base">
-                Agentes de bienes raíces
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer text-base">
-                Financiamiento hipotecario
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer text-base">
-                Tasadores
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer text-base">
-                Abogados
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer text-base">
-                Fotografía y Visuales
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer text-base">
-                Estudios de título
-              </DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuLabel className="text-sm font-semibold">
-                Para profesionales:
-              </DropdownMenuLabel>
-              <DropdownMenuItem className="cursor-pointer text-base">
-                Promueve tus servicios
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer text-base">
-                Publica tus propiedades
-              </DropdownMenuItem>
-              <DropdownMenuItem className="cursor-pointer text-base">
-                Destaca tus propiedades
-              </DropdownMenuItem>
+            <DropdownMenuContent
+              align="start"
+              className="w-[500px] p-6"
+              onMouseEnter={() => {
+                clearTimeout(profesionalesTimeout);
+                handleProfesionalesOpen(true);
+              }}
+              onMouseLeave={() => {
+                profesionalesTimeout = setTimeout(() => {
+                  handleProfesionalesOpen(false);
+                }, 100);
+              }}
+            >
+              <div className="grid grid-cols-2 gap-8">
+                {/* Left Column - Encuentra servicios */}
+                <div>
+                  <DropdownMenuLabel className="mb-2 text-sm font-semibold text-text-primary">
+                    Encuentra servicios:
+                  </DropdownMenuLabel>
+                  <div className="flex flex-col gap-1">
+                    <DropdownMenuItem className="cursor-pointer text-base">
+                      Agentes de bienes raíces
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer text-base">
+                      Financiamiento hipotecario
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer text-base">
+                      Tasadores
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer text-base">
+                      Abogados
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer text-base">
+                      Fotografía y Visuales
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer text-base">
+                      Estudios de título
+                    </DropdownMenuItem>
+                  </div>
+                </div>
+
+                {/* Vertical Divider */}
+                <div className="absolute left-1/2 top-4 bottom-4 w-px bg-border-light"></div>
+
+                {/* Right Column - Para profesionales */}
+                <div>
+                  <DropdownMenuLabel className="mb-2 text-sm font-semibold text-text-primary">
+                    Para profesionales:
+                  </DropdownMenuLabel>
+                  <div className="flex flex-col gap-1">
+                    <DropdownMenuItem className="cursor-pointer text-base">
+                      Promueve tus servicios
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer text-base">
+                      Publica tus propiedades
+                    </DropdownMenuItem>
+                    <DropdownMenuItem className="cursor-pointer text-base">
+                      Destaca tus propiedades
+                    </DropdownMenuItem>
+                  </div>
+                </div>
+              </div>
             </DropdownMenuContent>
           </DropdownMenu>
           <Link
