@@ -32,11 +32,12 @@ export default function FeaturedProperty() {
       {/* Featured Property Card - Centered */}
       <div className="mx-auto">
           <Card
-            className="group overflow-hidden border-[1px] p-0 shadow-md hover:shadow-xl"
+            className="group border-[1px] p-0 shadow-md hover:shadow-xl"
             style={{
-              borderRadius: "var(--radius-card)",
+              borderRadius: "250px 250px var(--radius-card) var(--radius-card)",
               borderColor: "var(--border-primary)",
               transition: "all 200ms",
+              overflow: "hidden",
             }}
           >
             {/*

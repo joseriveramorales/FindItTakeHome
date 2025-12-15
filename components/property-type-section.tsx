@@ -3,6 +3,7 @@
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Bed, Bath, Maximize2, MapPin } from "lucide-react";
+import Image from "next/image";
 
 // Hardcoded property data organized by type
 const propertyData = {
@@ -15,7 +16,7 @@ const propertyData = {
       sqft: 2500,
       location: "San Juan",
       propertyType: "Casa",
-      imageGradient: "from-blue-400 to-blue-600",
+      image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80",
     },
     {
       id: 2,
@@ -25,7 +26,7 @@ const propertyData = {
       sqft: 3200,
       location: "Dorado",
       propertyType: "Casa",
-      imageGradient: "from-teal-400 to-teal-600",
+      image: "https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=800&q=80",
     },
     {
       id: 3,
@@ -35,7 +36,7 @@ const propertyData = {
       sqft: 4000,
       location: "Bayamón",
       propertyType: "Casa",
-      imageGradient: "from-green-400 to-green-600",
+      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
     },
     {
       id: 4,
@@ -45,7 +46,7 @@ const propertyData = {
       sqft: 2300,
       location: "Ponce",
       propertyType: "Casa",
-      imageGradient: "from-indigo-400 to-indigo-600",
+      image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&q=80",
     },
   ],
   Apartamento: [
@@ -57,7 +58,7 @@ const propertyData = {
       sqft: 1800,
       location: "Guaynabo",
       propertyType: "Apartamento",
-      imageGradient: "from-purple-400 to-purple-600",
+      image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80",
     },
     {
       id: 6,
@@ -67,7 +68,7 @@ const propertyData = {
       sqft: 2200,
       location: "Caguas",
       propertyType: "Apartamento",
-      imageGradient: "from-pink-400 to-pink-600",
+      image: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=800&q=80",
     },
     {
       id: 7,
@@ -77,7 +78,7 @@ const propertyData = {
       sqft: 1500,
       location: "San Juan",
       propertyType: "Apartamento",
-      imageGradient: "from-rose-400 to-rose-600",
+      image: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=800&q=80",
     },
     {
       id: 8,
@@ -87,52 +88,10 @@ const propertyData = {
       sqft: 2100,
       location: "Carolina",
       propertyType: "Apartamento",
-      imageGradient: "from-violet-400 to-violet-600",
+      image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?w=800&q=80",
     },
   ],
-  Condo: [
-    {
-      id: 9,
-      price: 280000,
-      bedrooms: 2,
-      bathrooms: 1,
-      sqft: 1500,
-      location: "Carolina",
-      propertyType: "Condo",
-      imageGradient: "from-orange-400 to-orange-600",
-    },
-    {
-      id: 10,
-      price: 350000,
-      bedrooms: 3,
-      bathrooms: 2,
-      sqft: 1900,
-      location: "Guaynabo",
-      propertyType: "Condo",
-      imageGradient: "from-amber-400 to-amber-600",
-    },
-    {
-      id: 11,
-      price: 315000,
-      bedrooms: 2,
-      bathrooms: 2,
-      sqft: 1650,
-      location: "Dorado",
-      propertyType: "Condo",
-      imageGradient: "from-yellow-400 to-yellow-600",
-    },
-    {
-      id: 12,
-      price: 485000,
-      bedrooms: 3,
-      bathrooms: 3,
-      sqft: 2400,
-      location: "San Juan",
-      propertyType: "Condo",
-      imageGradient: "from-lime-400 to-lime-600",
-    },
-  ],
-  Solar: [
+  Terrenos: [
     {
       id: 13,
       price: 125000,
@@ -140,8 +99,8 @@ const propertyData = {
       bathrooms: 0,
       sqft: 5000,
       location: "Arecibo",
-      propertyType: "Solar",
-      imageGradient: "from-emerald-400 to-emerald-600",
+      propertyType: "Terrenos",
+      image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80",
     },
     {
       id: 14,
@@ -150,8 +109,8 @@ const propertyData = {
       bathrooms: 0,
       sqft: 3500,
       location: "Mayagüez",
-      propertyType: "Solar",
-      imageGradient: "from-cyan-400 to-cyan-600",
+      propertyType: "Terrenos",
+      image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80",
     },
     {
       id: 15,
@@ -160,8 +119,8 @@ const propertyData = {
       bathrooms: 0,
       sqft: 8000,
       location: "Rincón",
-      propertyType: "Solar",
-      imageGradient: "from-sky-400 to-sky-600",
+      propertyType: "Terrenos",
+      image: "https://images.unsplash.com/photo-1592595896551-12b371d546d5?w=800&q=80",
     },
     {
       id: 16,
@@ -170,8 +129,8 @@ const propertyData = {
       bathrooms: 0,
       sqft: 10000,
       location: "Isabela",
-      propertyType: "Solar",
-      imageGradient: "from-blue-300 to-blue-500",
+      propertyType: "Terrenos",
+      image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&q=80",
     },
   ],
   Comercial: [
@@ -183,7 +142,7 @@ const propertyData = {
       sqft: 4500,
       location: "San Juan",
       propertyType: "Comercial",
-      imageGradient: "from-slate-400 to-slate-600",
+      image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
     },
     {
       id: 18,
@@ -193,7 +152,7 @@ const propertyData = {
       sqft: 6800,
       location: "Guaynabo",
       propertyType: "Comercial",
-      imageGradient: "from-gray-400 to-gray-600",
+      image: "https://images.unsplash.com/photo-1577495508048-b635879837f1?w=800&q=80",
     },
     {
       id: 19,
@@ -203,7 +162,7 @@ const propertyData = {
       sqft: 3200,
       location: "Carolina",
       propertyType: "Comercial",
-      imageGradient: "from-zinc-400 to-zinc-600",
+      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=80",
     },
     {
       id: 20,
@@ -213,10 +172,18 @@ const propertyData = {
       sqft: 5500,
       location: "Bayamón",
       propertyType: "Comercial",
-      imageGradient: "from-neutral-400 to-neutral-600",
+      image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=80",
     },
   ],
 };
+
+// Mixed properties for "Todos" tab - one from each category
+const todosProperties = [
+  propertyData.Casa[0],       // Casa in San Juan
+  propertyData.Apartamento[0], // Apartamento in Guaynabo
+  propertyData.Terrenos[0],    // Terrenos in Arecibo
+  propertyData.Comercial[0],   // Comercial in San Juan
+];
 
 // Format price to currency string
 function formatPrice(price: number): string {
@@ -232,18 +199,28 @@ function formatSqft(sqft: number): string {
 function PropertyCard({ property }: { property: typeof propertyData.Casa[0] }) {
   return (
     <Card
-      className="group overflow-hidden border-[1px] p-0 shadow-sm hover:shadow-lg"
+      className="group border-[1px] p-0 shadow-sm hover:shadow-lg"
       style={{
-        borderRadius: "var(--radius-card)",
+        borderRadius: "250px 250px var(--radius-card) var(--radius-card)",
         borderColor: "var(--border-primary)",
         transition: "all 200ms",
+        overflow: "hidden",
       }}
     >
-      {/* Property Image - Using gradient placeholder with rounded top */}
-      <div className="relative h-[220px] w-full">
-        <div
-          className={`h-full w-full bg-gradient-to-br ${property.imageGradient}`}
-          style={{ borderRadius: "250px 250px var(--radius-card) var(--radius-card)" }}
+      {/* Property Image with curved border radius */}
+      <div
+        className="relative h-[220px] w-full"
+        style={{
+          borderRadius: "250px 250px var(--radius-card) var(--radius-card)",
+          overflow: "hidden"
+        }}
+      >
+        <Image
+          src={property.image}
+          alt={`${property.propertyType} in ${property.location}`}
+          fill
+          className="object-cover"
+          sizes="(max-width: 1440px) 25vw, 350px"
         />
         {/* Property Type Badge */}
         <div
@@ -323,11 +300,21 @@ export default function PropertyTypeSection() {
         </div>
 
         {/* Property Type Tabs */}
-        <Tabs defaultValue="Casa" className="w-full">
+        <Tabs defaultValue="Todos" className="w-full">
           <TabsList
             className="mb-8 inline-flex h-auto gap-2 bg-transparent p-0"
             style={{ borderBottom: "1px solid var(--border-light)" }}
           >
+            <TabsTrigger
+              value="Todos"
+              className="rounded-t-lg border-b-2 border-transparent px-6 py-3 text-base font-medium data-[state=active]:border-findit-blue data-[state=active]:bg-white data-[state=active]:text-findit-blue"
+              style={{
+                color: "var(--text-secondary)",
+                transition: "all 200ms",
+              }}
+            >
+              Todos
+            </TabsTrigger>
             <TabsTrigger
               value="Casa"
               className="rounded-t-lg border-b-2 border-transparent px-6 py-3 text-base font-medium data-[state=active]:border-findit-blue data-[state=active]:bg-white data-[state=active]:text-findit-blue"
@@ -349,24 +336,14 @@ export default function PropertyTypeSection() {
               Apartamento
             </TabsTrigger>
             <TabsTrigger
-              value="Condo"
+              value="Terrenos"
               className="rounded-t-lg border-b-2 border-transparent px-6 py-3 text-base font-medium data-[state=active]:border-findit-blue data-[state=active]:bg-white data-[state=active]:text-findit-blue"
               style={{
                 color: "var(--text-secondary)",
                 transition: "all 200ms",
               }}
             >
-              Condo
-            </TabsTrigger>
-            <TabsTrigger
-              value="Solar"
-              className="rounded-t-lg border-b-2 border-transparent px-6 py-3 text-base font-medium data-[state=active]:border-findit-blue data-[state=active]:bg-white data-[state=active]:text-findit-blue"
-              style={{
-                color: "var(--text-secondary)",
-                transition: "all 200ms",
-              }}
-            >
-              Solar
+              Terrenos
             </TabsTrigger>
             <TabsTrigger
               value="Comercial"
@@ -379,6 +356,15 @@ export default function PropertyTypeSection() {
               Comercial
             </TabsTrigger>
           </TabsList>
+
+          {/* Todos Tab Content - Mixed properties from all categories */}
+          <TabsContent value="Todos" className="mt-0">
+            <div className="grid grid-cols-4 gap-6">
+              {todosProperties.map((property) => (
+                <PropertyCard key={property.id} property={property} />
+              ))}
+            </div>
+          </TabsContent>
 
           {/* Casa Tab Content */}
           <TabsContent value="Casa" className="mt-0">
@@ -398,19 +384,10 @@ export default function PropertyTypeSection() {
             </div>
           </TabsContent>
 
-          {/* Condo Tab Content */}
-          <TabsContent value="Condo" className="mt-0">
+          {/* Terrenos Tab Content */}
+          <TabsContent value="Terrenos" className="mt-0">
             <div className="grid grid-cols-4 gap-6">
-              {propertyData.Condo.map((property) => (
-                <PropertyCard key={property.id} property={property} />
-              ))}
-            </div>
-          </TabsContent>
-
-          {/* Solar Tab Content */}
-          <TabsContent value="Solar" className="mt-0">
-            <div className="grid grid-cols-4 gap-6">
-              {propertyData.Solar.map((property) => (
+              {propertyData.Terrenos.map((property) => (
                 <PropertyCard key={property.id} property={property} />
               ))}
             </div>
