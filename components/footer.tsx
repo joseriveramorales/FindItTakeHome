@@ -1,8 +1,9 @@
 "use client";
 
-import Link from "next/link";
-import { Facebook, Instagram, Twitter, ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
+import Link from "next/link";
+import { ChevronDown, ChevronUp, Facebook, Instagram, Twitter } from "lucide-react";
+import { allMunicipalities, companyLinks, exploreLinks } from "@/lib/mock-data";
 
 /**
  * Footer component matching finditpr.com exactly
@@ -17,37 +18,8 @@ export default function Footer() {
   const [showAllBienesRaices, setShowAllBienesRaices] = useState(false);
   const [showAllAlquiler, setShowAllAlquiler] = useState(false);
 
-  // All 78 municipalities in alphabetical order
-  const municipalities = [
-    "Adjuntas", "Aguada", "Aguadilla", "Aibonito", "Añasco", "Arecibo", "Arroyo",
-    "Barceloneta", "Barranquitas", "Bayamón", "Cabo Rojo", "Caguas", "Camuy",
-    "Canóvanas", "Carolina", "Cataño", "Cayey", "Ceiba", "Ciales", "Cidra",
-    "Coamo", "Comerío", "Corozal", "Culebra", "Dorado", "Fajardo", "Florida",
-    "Guánica", "Guayama", "Guayanilla", "Guaynabo", "Gurabo", "Hatillo",
-    "Hormigueros", "Humacao", "Isabela", "Jayuya", "Juana Díaz", "Juncos",
-    "Lajas", "Lares", "Las Marías", "Las Piedras", "Loíza", "Luquillo",
-    "Manatí", "Maricao", "Maunabo", "Mayagüez", "Moca", "Morovis", "Naguabo",
-    "Naranjito", "Orocovis", "Patillas", "Peñuelas", "Ponce", "Quebradillas",
-    "Rincón", "Río Grande", "Sabana Grande", "Salinas", "San Germán", "San Juan",
-    "San Lorenzo", "San Sebastián", "Santa Isabel", "Toa Alta", "Toa Baja",
-    "Trujillo Alto", "Utuado", "Vega Alta", "Vega Baja", "Vieques", "Villalba",
-    "Yabucoa", "Yauco"
-  ];
-
-  const displayedBienesRaices = showAllBienesRaices ? municipalities : municipalities.slice(0, 10);
-  const displayedAlquiler = showAllAlquiler ? municipalities : municipalities.slice(0, 10);
-
-  const companyLinks = [
-    { name: "Contáctanos", href: "/contacto" },
-    { name: "Términos de Uso", href: "/terminos" },
-    { name: "Política de Privacidad", href: "/privacidad" },
-    { name: "Mapa del Sitio", href: "/mapa" },
-  ];
-
-  const exploreLinks = [
-    { name: "Findit Blog", href: "/blog" },
-    { name: "Acerca de Nosotros", href: "/acerca" },
-  ];
+  const displayedBienesRaices = showAllBienesRaices ? allMunicipalities : allMunicipalities.slice(0, 10);
+  const displayedAlquiler = showAllAlquiler ? allMunicipalities : allMunicipalities.slice(0, 10);
 
   return (
     <footer className="w-full" style={{ backgroundColor: "var(--bg-section)" }}>

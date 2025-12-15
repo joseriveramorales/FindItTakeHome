@@ -1,89 +1,20 @@
 "use client";
 
+import { Bed, Bath, Maximize2, MapPin } from "lucide-react";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Bed, Bath, Maximize2, MapPin } from "lucide-react";
+import {
+  propertiesForRent,
+  formatPrice,
+  formatSqft,
+  type Property
+} from "@/lib/mock-data";
 
-// Hardcoded property data - En Venta (For Sale)
-const propertiesForSale = [
-  {
-    id: 1,
-    price: 450000,
-    bedrooms: 3,
-    bathrooms: 2,
-    sqft: 2500,
-    location: "San Juan",
-    propertyType: "Casa",
-    imageGradient: "from-blue-400 to-blue-600",
-  },
-  {
-    id: 2,
-    price: 325000,
-    bedrooms: 2,
-    bathrooms: 2,
-    sqft: 1800,
-    location: "Guaynabo",
-    propertyType: "Apartamento",
-    imageGradient: "from-purple-400 to-purple-600",
-  },
-  {
-    id: 3,
-    price: 575000,
-    bedrooms: 4,
-    bathrooms: 3,
-    sqft: 3200,
-    location: "Dorado",
-    propertyType: "Casa",
-    imageGradient: "from-teal-400 to-teal-600",
-  },
-];
-
-// Hardcoded property data - En Alquiler (For Rent)
-const propertiesForRent = [
-  {
-    id: 4,
-    price: 2800,
-    bedrooms: 2,
-    bathrooms: 1,
-    sqft: 1500,
-    location: "Carolina",
-    propertyType: "Condo",
-    imageGradient: "from-orange-400 to-orange-600",
-  },
-  {
-    id: 5,
-    price: 3500,
-    bedrooms: 3,
-    bathrooms: 2,
-    sqft: 2200,
-    location: "Bayamón",
-    propertyType: "Casa",
-    imageGradient: "from-green-400 to-green-600",
-  },
-  {
-    id: 6,
-    price: 2200,
-    bedrooms: 2,
-    bathrooms: 2,
-    sqft: 1800,
-    location: "Caguas",
-    propertyType: "Apartamento",
-    imageGradient: "from-pink-400 to-pink-600",
-  },
-];
-
-// Format price to currency string
-function formatPrice(price: number): string {
-  return `$${price.toLocaleString("en-US")}`;
-}
-
-// Format square feet with comma separator
-function formatSqft(sqft: number): string {
-  return sqft.toLocaleString("en-US");
-}
+// For backward compatibility, create propertiesForSale from first 3 rental properties
+const propertiesForSale = propertiesForRent.slice(0, 3);
 
 // Property Card Component
-function PropertyCard({ property, isRental = false }: { property: typeof propertiesForSale[0]; isRental?: boolean }) {
+function PropertyCard({ property, isRental = false }: { property: Property; isRental?: boolean }) {
   return (
     <Card
       className="group overflow-hidden border-[1px] p-0 shadow-sm hover:shadow-lg"

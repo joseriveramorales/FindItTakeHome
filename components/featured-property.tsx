@@ -2,29 +2,7 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Bed, Bath, Maximize2, MapPin } from "lucide-react";
 import Image from "next/image";
-
-// Hardcoded featured property data
-const featuredProperty = {
-  price: 275000,
-  title: "Haciendas del Real",
-  location: "Luquillo",
-  bedrooms: 3,
-  bathrooms: 2,
-  sqft: 2200,
-  propertyType: "Casa",
-  description: "Hermosa propiedad con vistas espectaculares y acabados de lujo.",
-  imageUrl: "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80",
-};
-
-// Format price to currency string
-function formatPrice(price: number): string {
-  return `$${price.toLocaleString("en-US")}`;
-}
-
-// Format square feet with comma separator
-function formatSqft(sqft: number): string {
-  return sqft.toLocaleString("en-US");
-}
+import { featuredProperty, formatPrice, formatSqft } from "@/lib/mock-data";
 
 export default function FeaturedProperty() {
   return (
@@ -54,8 +32,8 @@ export default function FeaturedProperty() {
                 }}
               >
                 <Image
-                  src={featuredProperty.imageUrl}
-                  alt={featuredProperty.title}
+                  src={featuredProperty.imageUrl || ""}
+                  alt={featuredProperty.title || ""}
                   fill
                   className="object-cover"
                   sizes="(max-width: 1280px) 100vw, 1280px"
