@@ -1,39 +1,18 @@
 import { ArrowRight, Heart, Search, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { featureCards } from "@/lib/mock-data";
+import { ICON_SIZE, SECTION_PADDING } from "@/lib/constants";
+
+const iconMap = {
+  Search,
+  Heart,
+  Users,
+};
 
 export default function FeatureCards() {
-  const features = [
-    {
-      icon: Search,
-      iconColor: "#2A7DE6",
-      iconBg: "rgba(42, 125, 230, 0.1)",
-      title: "Busca propiedades",
-      description:
-        "Utiliza el mapa y filtros para encontrar tu propiedad ideal rápido.",
-      buttonText: "Buscar propiedades",
-    },
-    {
-      icon: Heart,
-      iconColor: "#52C41A",
-      iconBg: "rgba(82, 196, 26, 0.1)",
-      title: "Guarda tus búsquedas",
-      description: "Te notificamos de nuevos listados al instante.",
-      buttonText: "Guardar búsquedas",
-    },
-    {
-      icon: Users,
-      iconColor: "#9254DE",
-      iconBg: "rgba(146, 84, 222, 0.1)",
-      title: "Consigue servicios",
-      description:
-        "Encuentra los servicios que necesitas para comprar tu propiedad.",
-      buttonText: "Ver proveedores",
-    },
-  ];
-
   return (
-    <section className="bg-background-section py-16">
+    <section className={`bg-background-section ${SECTION_PADDING.md}`}>
       <div className="mx-auto max-w-7xl px-8">
         <div className="grid grid-cols-2 gap-16">
           {/* Left side: Heading and subtitle */}
@@ -49,8 +28,8 @@ export default function FeatureCards() {
 
           {/* Right side: Feature cards stacked vertically */}
           <div className="flex flex-col gap-6">
-            {features.map((feature, index) => {
-              const Icon = feature.icon;
+            {featureCards.map((feature, index) => {
+              const Icon = iconMap[feature.iconName];
               return (
                 <Card
                   key={index}
@@ -60,7 +39,7 @@ export default function FeatureCards() {
                     className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl"
                     style={{ backgroundColor: feature.iconBg }}
                   >
-                    <Icon className="h-7 w-7" style={{ color: feature.iconColor }} />
+                    <Icon className={ICON_SIZE.xl} style={{ color: feature.iconColor }} />
                   </div>
                   <div className="flex flex-1 flex-col">
                     <h3 className="mb-2 text-xl font-semibold text-text-primary">
@@ -74,7 +53,7 @@ export default function FeatureCards() {
                       className="w-fit gap-2 px-0 text-findit-blue hover:bg-transparent hover:text-findit-blue/80"
                     >
                       {feature.buttonText}
-                      <ArrowRight className="h-4 w-4" />
+                      <ArrowRight className={ICON_SIZE.sm} />
                     </Button>
                   </div>
                 </Card>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { ChevronDown, ChevronUp, Facebook, Instagram, Twitter } from "lucide-react";
 import { allMunicipalities, companyLinks, exploreLinks } from "@/lib/mock-data";
+import { CONTAINER_WIDTH, ICON_SIZE, TRANSITION_DURATION } from "@/lib/constants";
 
 /**
  * Footer component matching finditpr.com exactly
@@ -23,7 +24,7 @@ export default function Footer() {
 
   return (
     <footer className="w-full" style={{ backgroundColor: "var(--bg-section)" }}>
-      <div className="mx-auto max-w-[1440px] px-8 py-16">
+      <div className={`mx-auto ${CONTAINER_WIDTH} px-8 py-16`}>
         {/* Main Grid: 4 columns for main sections */}
         <div className="grid grid-cols-4 gap-12 mb-12">
           {/* Column 1: Bienes Raíces */}
@@ -51,11 +52,11 @@ export default function Footer() {
             >
               {showAllBienesRaices ? (
                 <>
-                  Ver menos <ChevronUp className="h-4 w-4" />
+                  Ver menos <ChevronUp className={ICON_SIZE.sm} />
                 </>
               ) : (
                 <>
-                  Ver más <ChevronDown className="h-4 w-4" />
+                  Ver más <ChevronDown className={ICON_SIZE.sm} />
                 </>
               )}
             </button>
@@ -86,11 +87,11 @@ export default function Footer() {
             >
               {showAllAlquiler ? (
                 <>
-                  Ver menos <ChevronUp className="h-4 w-4" />
+                  Ver menos <ChevronUp className={ICON_SIZE.sm} />
                 </>
               ) : (
                 <>
-                  Ver más <ChevronDown className="h-4 w-4" />
+                  Ver más <ChevronDown className={ICON_SIZE.sm} />
                 </>
               )}
             </button>
@@ -180,11 +181,11 @@ export default function Footer() {
               style={{
                 borderColor: "var(--border-primary)",
                 color: "var(--text-secondary)",
-                transition: "all 200ms",
+                transition: `all ${TRANSITION_DURATION}`,
               }}
               aria-label="Facebook"
             >
-              <Facebook className="h-5 w-5" />
+              <Facebook className={ICON_SIZE.md} />
             </Link>
             <Link
               href="https://instagram.com/finditpr"
@@ -194,11 +195,11 @@ export default function Footer() {
               style={{
                 borderColor: "var(--border-primary)",
                 color: "var(--text-secondary)",
-                transition: "all 200ms",
+                transition: `all ${TRANSITION_DURATION}`,
               }}
               aria-label="Instagram"
             >
-              <Instagram className="h-5 w-5" />
+              <Instagram className={ICON_SIZE.md} />
             </Link>
             <Link
               href="https://twitter.com/finditpr"
@@ -208,11 +209,11 @@ export default function Footer() {
               style={{
                 borderColor: "var(--border-primary)",
                 color: "var(--text-secondary)",
-                transition: "all 200ms",
+                transition: `all ${TRANSITION_DURATION}`,
               }}
               aria-label="X (Twitter)"
             >
-              <Twitter className="h-5 w-5" />
+              <Twitter className={ICON_SIZE.md} />
             </Link>
           </div>
         </div>

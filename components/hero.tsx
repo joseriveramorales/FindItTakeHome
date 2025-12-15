@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Checkbox } from "@/components/ui/checkbox";
+import { PROPERTY_TYPES, BUTTON_HEIGHT, ICON_SIZE, TRANSITION_DURATION } from "@/lib/constants";
 
 export default function Hero() {
   return (
@@ -70,8 +71,6 @@ function SearchBar() {
   const [open, setOpen] = useState(false);
   const [selectedTypes, setSelectedTypes] = useState<string[]>(["Todas"]);
 
-  const propertyTypes = ["Todas", "Casas", "Apartamentos", "Terrenos"];
-
   const handleTypeToggle = (type: string) => {
     if (type === "Todas") {
       setSelectedTypes(["Todas"]);
@@ -98,15 +97,15 @@ function SearchBar() {
     <div className="relative grid grid-cols-1 xl:grid-cols-[1fr_auto_auto] gap-3 xl:items-end">
       {/* Search Input */}
       <div className="relative w-full">
-        <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2" style={{ color: "var(--text-tertiary)" }} />
+        <Search className={`absolute left-4 top-1/2 -translate-y-1/2 ${ICON_SIZE.md}`} style={{ color: "var(--text-tertiary)" }} />
         <Input
           type="text"
           placeholder="Buscar por ciudad, pueblo, o código postal"
-          className="h-14 w-full border bg-white pl-12 pr-4 text-base"
+          className={`${BUTTON_HEIGHT.xl} w-full border bg-white pl-12 pr-4 text-base`}
           style={{
             borderRadius: "var(--radius-button)",
             borderColor: "var(--border-primary)",
-            transition: "all 200ms",
+            transition: `all ${TRANSITION_DURATION}`,
           }}
         />
       </div>
@@ -116,16 +115,16 @@ function SearchBar() {
         <PopoverTrigger asChild>
           <Button
             variant="outline"
-            className="h-14 xl:w-auto w-full justify-between border bg-white px-4 text-base font-normal xl:flex-shrink-0"
+            className={`${BUTTON_HEIGHT.xl} xl:w-auto w-full justify-between border bg-white px-4 text-base font-normal xl:flex-shrink-0`}
             style={{
               borderRadius: "var(--radius-button)",
               borderColor: "var(--border-primary)",
               color: "var(--text-primary)",
-              transition: "all 200ms",
+              transition: `all ${TRANSITION_DURATION}`,
             }}
           >
             <span className="truncate">{displayText}</span>
-            <ChevronDown className="h-5 w-5 flex-shrink-0" style={{ color: "var(--text-tertiary)" }} />
+            <ChevronDown className={`flex-shrink-0 ${ICON_SIZE.md}`} style={{ color: "var(--text-tertiary)" }} />
           </Button>
         </PopoverTrigger>
         <PopoverContent
@@ -139,16 +138,16 @@ function SearchBar() {
           <div className="flex flex-col gap-4">
             {/* Property Type Checkboxes */}
             <div className="flex flex-col gap-3">
-              {propertyTypes.map((type) => (
+              {PROPERTY_TYPES.map((type) => (
                 <label
                   key={type}
                   className="flex items-center gap-3 cursor-pointer py-2 hover:bg-gray-50 px-3 rounded"
-                  style={{ transition: "all 200ms" }}
+                  style={{ transition: `all ${TRANSITION_DURATION}` }}
                 >
                   <Checkbox
                     checked={selectedTypes.includes(type)}
                     onCheckedChange={() => handleTypeToggle(type)}
-                    className="h-5 w-5"
+                    className={ICON_SIZE.md}
                     style={{
                       borderRadius: "var(--radius-sm)",
                     }}
@@ -165,23 +164,23 @@ function SearchBar() {
               <Button
                 variant="outline"
                 onClick={handleReset}
-                className="flex-1 h-11 text-sm font-semibold"
+                className={`flex-1 ${BUTTON_HEIGHT.md} text-sm font-semibold`}
                 style={{
                   borderRadius: "var(--radius-button)",
                   borderColor: "var(--border-primary)",
                   color: "var(--text-primary)",
-                  transition: "all 200ms",
+                  transition: `all ${TRANSITION_DURATION}`,
                 }}
               >
                 Resetear
               </Button>
               <Button
                 onClick={handleDone}
-                className="flex-1 h-11 text-sm font-semibold text-white"
+                className={`flex-1 ${BUTTON_HEIGHT.md} text-sm font-semibold text-white`}
                 style={{
                   borderRadius: "var(--radius-button)",
                   backgroundColor: "var(--findit-blue)",
-                  transition: "all 200ms",
+                  transition: `all ${TRANSITION_DURATION}`,
                 }}
               >
                 Listo
@@ -194,11 +193,11 @@ function SearchBar() {
       {/* Search Button */}
       <Button
         size="lg"
-        className="h-14 w-full xl:w-auto text-base font-medium text-white xl:flex-shrink-0"
+        className={`${BUTTON_HEIGHT.xl} w-full xl:w-auto text-base font-medium text-white xl:flex-shrink-0`}
         style={{
           borderRadius: "var(--radius-button)",
           backgroundColor: "var(--findit-blue)",
-          transition: "all 200ms",
+          transition: `all ${TRANSITION_DURATION}`,
         }}
       >
         Buscar

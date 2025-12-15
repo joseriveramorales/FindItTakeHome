@@ -15,7 +15,7 @@ export default function MediaMentions() {
         {/* Section Header */}
         <div className="mb-10 text-center">
           <h2 className="text-[32px] font-bold leading-tight" style={{ color: "var(--text-primary)" }}>
-            Nos han mencionado
+            Hemos sido destacados en los siguientes medios
           </h2>
           <p className="mt-2 text-base" style={{ color: "var(--text-secondary)" }}>
             Reconocidos por los principales medios de comunicación
