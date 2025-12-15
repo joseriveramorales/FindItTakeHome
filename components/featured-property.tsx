@@ -7,13 +7,13 @@ import Image from "next/image";
 const featuredProperty = {
   price: 275000,
   title: "Haciendas del Real",
-  location: "Ponce",
+  location: "Luquillo",
   bedrooms: 3,
   bathrooms: 2,
   sqft: 2200,
   propertyType: "Casa",
   description: "Hermosa propiedad con vistas espectaculares y acabados de lujo.",
-  imageUrl: "https://images.finditpr.com/assets/1st-reduced.jpeg",
+  imageUrl: "https://images.unsplash.com/photo-1613977257363-707ba9348227?w=800&q=80",
 };
 
 // Format price to currency string

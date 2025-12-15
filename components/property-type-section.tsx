@@ -16,7 +16,7 @@ const propertyData = {
       sqft: 2500,
       location: "San Juan",
       propertyType: "Casa",
-      image: "https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80",
+      image: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=80",
     },
     {
       id: 2,
