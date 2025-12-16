@@ -1,6 +1,6 @@
 # FindIT Homepage Replication
 
-A pixel-perfect replication of the [finditpr.com](https://finditpr.com) homepage built with Next.js, shadcn/ui, and Tailwind CSS.
+A replication of the [finditpr.com](https://finditpr.com) homepage built with Next.js, shadcn/ui, and Tailwind CSS.
 
 ## Live Demo
 
